@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+@using AdventureWorksStore.Domain.Entities
+@model IEnumerable<ProductInfo>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @foreach (var m in Model)
+        {
+            <div>
+                <h4>@m.ProductID</h4>
+                <h4>@m.ProductName</h4>
+                <h3>@m.ListPrice.ToString("C")</h3>
+            </div>
+        }
+    </div>
+</body>
+</html>
