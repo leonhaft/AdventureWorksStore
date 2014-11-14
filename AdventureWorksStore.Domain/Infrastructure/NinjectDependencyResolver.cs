@@ -8,6 +8,7 @@ using Ninject;
 using Moq;
 using AdventureWorksStore.Domain.Abstract;
 using AdventureWorksStore.Domain.Entities;
+using AdventureWorksStore.Domain.Concrete;
 
 namespace AdventureWorksStore.Domain.Infrastructure
 {
@@ -38,7 +39,7 @@ namespace AdventureWorksStore.Domain.Infrastructure
                     new ProductInfo{ ProductID=2,ProductName="P2",ListPrice=234.3m},
                     new ProductInfo{ ProductID=3,ProductName="P3",ListPrice=32m}
                 });
-            kernel.Bind<IProductRepository>().ToConstant(mock.Object);
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
 
         }
     }
