@@ -1,25 +1,18 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "List";
 }
-@using AdventureWorksStore.Domain.Entities
-@model IEnumerable<ProductInfo>
-<!DOCTYPE html>
+@using AdventureWorksStore.WebUI.HtmlHelpers;
+@model AdventureWorksStore.WebUI.Models.ProductsListViewModel
+<h2>List</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
+@foreach (var m in Model.Products)
+{
     <div>
-        @foreach (var m in Model)
-        {
-            <div>
-                <h4>@m.ProductID</h4>
-                <p>@m.ProductName</p>
-                <h3>@m.ListPrice.ToString("C")</h3>
-            </div>
-        }
+        <h4>@m.Name (@m.ProductID)</h4>
+        <p>@m.Description</p>
+        <h4>@m.ListPrice.ToString("c")</h4>
     </div>
-</body>
-</html>
+}
+<div>
+    @HtmlHelper.PageLinks(Model.PageInfo, s => Url.Action("List", new { page = s }))
+</div>

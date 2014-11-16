@@ -9,6 +9,6 @@ namespace AdventureWorksStore.Domain.Abstract
 {
     public interface IProductRepository
     {
-        IEnumerable<ProductInfo> Products { get; }
+        IEnumerable<Product> Products { get; }
     }
 }

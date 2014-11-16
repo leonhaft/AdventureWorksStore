@@ -33,14 +33,14 @@ namespace AdventureWorksStore.Domain.Infrastructure
         public void AddBinds()
         {
             Mock<IProductRepository> mock = new Mock<IProductRepository>();
-            mock.Setup(s => s.Products).Returns(new List<ProductInfo>
+            mock.Setup(s => s.Products).Returns(new List<Product>
                 {
-                    new ProductInfo{ ProductID=1,ProductName="P1" ,ListPrice=12.3m},
-                    new ProductInfo{ ProductID=2,ProductName="P2",ListPrice=234.3m},
-                    new ProductInfo{ ProductID=3,ProductName="P3",ListPrice=32m}
+                    new Product{ ProductID=1,Name="P1" ,ListPrice=12.3m, Description="werwetewrwet"},
+                    new Product{ ProductID=2,Name="P2",ListPrice=234.3m, Description="werewtewtew"},
+                    new Product{ ProductID=3,Name="P3",ListPrice=32m,Description="ewrewtwetewtewrwers"}
                 });
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
-
+            //kernel.Bind<IProductRepository>().ToConstant(mock.Object);
         }
     }
 }
