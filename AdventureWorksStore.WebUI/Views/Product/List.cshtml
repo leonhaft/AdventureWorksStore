@@ -1,18 +1,12 @@
 ﻿@{
     ViewBag.Title = "List";
 }
-@using AdventureWorksStore.WebUI.HtmlHelpers;
 @model AdventureWorksStore.WebUI.Models.ProductsListViewModel
-<h2>List</h2>
 
 @foreach (var m in Model.Products)
 {
-    <div>
-        <h4>@m.Name (@m.ProductID)</h4>
-        <p>@m.Description</p>
-        <h4>@m.ListPrice.ToString("c")</h4>
-    </div>
+    @Html.Partial("ProductSummary", m);
 }
-<div>
-    @HtmlHelper.PageLinks(Model.PageInfo, s => Url.Action("List", new { page = s }))
+<div class="pull-right btn-group">
+    @Html.PageLinks(Model.PageInfo, s => Url.Action("List", new { page = s }))
 </div>

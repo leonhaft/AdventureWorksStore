@@ -10,6 +10,6 @@ namespace AdventureWorksStore.Domain.Concrete
 {
     public class EFDbContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }
