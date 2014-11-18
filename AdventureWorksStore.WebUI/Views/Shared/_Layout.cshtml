@@ -20,15 +20,19 @@
                 @Html.ActionLink("AdventureWorksStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
     <div class="container body-content">
-        @RenderBody()
-        <hr />
+        <div id="categories" class="col-xs-3">
+            @Html.Action("Menu", "Nav")
+        </div>
+        <div class="col-xs-8">
+            @RenderBody()
+        </div>
+        <hr/>
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>

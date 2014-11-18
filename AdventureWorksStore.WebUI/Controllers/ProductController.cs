@@ -18,12 +18,13 @@ namespace AdventureWorksStore.WebUI.Controllers
         }
         //
         // GET: /Product/
-        public ViewResult List(int page = 1)
+        public ViewResult List(string category = null, int page = 1)
         {
             ProductsListViewModel listViewModel = new ProductsListViewModel
             {
-                PageInfo = new PageInfo { CurrentPage = page, PageSize = 10, TotalItems = repository.Products.Count() },
-                Products = repository.Products.
+                PageInfo = new PageInfo { CurrentPage = page, PageSize = 10, TotalItems = category == null ? repository.Products.Count() : repository.Products.Where(s => s.Category == category).Count() },
+                CurrentCategory = category,
+                Products = repository.Products.Where(p => (category == null && p.Category != null) || p.Category == category).
                 OrderBy(p => p.ProductID).
                 Skip((page - 1) * PageSize).
                 Take(PageSize)
