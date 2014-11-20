@@ -17,15 +17,13 @@ namespace AdventureWorksStore.WebUI.Controllers
             repository = iProducRepository;
         }
         // GET: Cart
-        public ActionResult Index(string returnUrl)
+        public ActionResult Index(Cart cart, string returnUrl)
         {
-            var cart = GetCart();
             return View(new CartListViewModel { Cart = cart, ReturnUrl = returnUrl });
         }
 
-        public RedirectToRouteResult AddToCart(Int32 productId, string returnUrl)
+        public RedirectToRouteResult AddToCart(Cart cart, Int32 productId, string returnUrl)
         {
-            var cart = GetCart();
             var product = repository.Products.FirstOrDefault(s => s.ProductID == productId);
             if (product != null)
             {
@@ -34,12 +32,11 @@ namespace AdventureWorksStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
-        public RedirectToRouteResult RemoveFromCart(Int32 productId, string returnUrl)
+        public RedirectToRouteResult RemoveFromCart(Cart cart, Int32 productId, string returnUrl)
         {
             var product = repository.Products.FirstOrDefault(s => s.ProductID == productId);
             if (product != null)
             {
-                var cart = GetCart();
                 cart.RemoveFromCart(product);
             }
             return RedirectToAction("Index", new { returnUrl });
