@@ -23,6 +23,12 @@ namespace AdventureWorksStore.WebUI.Controllers
             return View(new CartListViewModel { Cart = cart, ReturnUrl = returnUrl });
         }
 
+        public PartialViewResult Summary()
+        {
+            var cart = GetCart();
+            return PartialView(cart);
+        }
+
         public RedirectToRouteResult AddToCart(Int32 productId, string returnUrl)
         {
             var cart = GetCart();
