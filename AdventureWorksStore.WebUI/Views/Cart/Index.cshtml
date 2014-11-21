@@ -18,7 +18,7 @@
         {
             <tr>
                 <td>
-                    @c.Quantity
+                    @Html.TextBox("quantity", c.Quantity, new { @class = "input-sm" })
                 </td>
                 <td>
                     @c.Product.Name
