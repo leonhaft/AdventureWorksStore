@@ -1,6 +1,8 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
+    <meta name="viewport" content="width=device-width" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -11,8 +13,7 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-                @Html.ActionLink("AdventureWorksStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @Html.Action("Summary", "Cart")
+            @Html.ActionLink("AdventureWorksStore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
     </div>
 

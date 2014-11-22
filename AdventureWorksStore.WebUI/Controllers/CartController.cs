@@ -12,9 +12,11 @@ namespace AdventureWorksStore.WebUI.Controllers
     public class CartController : Controller
     {
         private IProductRepository repository;
-        public CartController(IProductRepository iProducRepository)
+        private IOrderProcess order;
+        public CartController(IProductRepository iProducRepository, IOrderProcess iOrder)
         {
             repository = iProducRepository;
+            order = iOrder;
         }
         // GET: Cart
         public ActionResult Index(Cart cart, string returnUrl)
@@ -44,6 +46,28 @@ namespace AdventureWorksStore.WebUI.Controllers
                 cart.RemoveFromCart(product);
             }
             return RedirectToAction("Index", new { returnUrl });
+        }
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingInfo)
+        {
+            if (cart.CartItems.Any() == false)
+            {
+                ModelState.AddModelError("empty", "No Item In Cart");
+            }
+            if (ModelState.IsValid)
+            {
+                order.ProcessOrder(cart, shippingInfo);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingInfo);
+            }
         }
 
         public Cart GetCart()

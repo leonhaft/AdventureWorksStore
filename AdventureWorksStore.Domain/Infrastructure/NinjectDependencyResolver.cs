@@ -40,6 +40,7 @@ namespace AdventureWorksStore.Domain.Infrastructure
                     new Product{ ProductID=3,Name="P3",ListPrice=32m,Description="ewrewtwetewtewrwers"}
                 });
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            kernel.Bind<IOrderProcess>().To<EMailOrderProcessor>();
             //kernel.Bind<IProductRepository>().ToConstant(mock.Object);
         }
     }

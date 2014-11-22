@@ -50,6 +50,6 @@
     </tfoot>
 </table>
 <div class="pull-center">
-    <input type="submit" value="Continue Shopping" class="btn btn-default" />
-    <input type="submit" value="Checkout" class="btn btn-default" />
+    @Html.ActionLink("Continue Shopping", "Index", new { requrnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default btn-primary" })
+    @Html.ActionLink("Checkout", "Checkout", "Cart", null, new { @class = "btn btn-default btn-primary" })
 </div>

@@ -1,0 +1,9 @@
+﻿@model AdventureWorksStore.Domain.Entities.Cart
+
+<div class="navbar-right">
+    @Html.ActionLink("Checkout", "Checkout", "Cart", new { returnUrl = Request.Url.PathAndQuery }, new { @class = "btn btn-default navbar-btn" })
+</div>
+<div class="navbar-text navbar-right">
+    <b>Your Cart:</b> @Model.CartItems.Count() Items
+    @Model.ComputeTotalValue().ToString("c");
+</div>
